@@ -1,0 +1,13 @@
+Instructions, circuit diagram, BOM and boards/panels(when avaliable late june 2014) can be purchased at http://neutron-sound.com/noa.html
+
+
+To program the teensy 3.1 you will need arduino IDE 1.05 for win/lin/mac and teensyduino, which will automatically install it's extentions to the arduino 1.05 installation
+
+If you are using a newer version of arduino IDE, it is ok to have 2 different installations. teensyduino installer will find the correct one.
+
+
+IMPORTANT!!!!1111one
+
+If you are programming the Teensy in-module while your synthesizer is turned on, you MUST break the external power jumper on the teensy.
+
+please see http://neutron-sound.com/noa.html
