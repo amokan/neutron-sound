@@ -1,0 +1,4 @@
+These are converted waved which will work in the orgone accumulator code.
+
+to see the corresponding waveforms visit http://www.adventurekid.se/AKRTfiles/AKWF/view/waveforms_index.html
+
