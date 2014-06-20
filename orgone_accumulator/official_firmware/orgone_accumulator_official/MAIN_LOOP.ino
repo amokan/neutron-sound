@@ -4,8 +4,11 @@ void loop() {
 
   //slow generated signals
   noiseTable2[buh]= random(-32767,32767); //hypnotoad noise (noiseTable2)
-
+  
+  SWC ++;
+  if (SWC > ((analogControls[0]>>6))){
   NT3Rate = (random(-7,8))-(noiseTable3[0]/4198); //LF noise (noiseTable3)
+  SWC = 0;}
 
 
   ARC ++;
@@ -106,7 +109,8 @@ void loop() {
       o9.phase = 
       o10.phase = 0;
     detuneScaler = 0;
-    gate = 0;  
+    gate = 0;
+    randomSeed(analogControls[0]>>5);  
     ;
   }
 

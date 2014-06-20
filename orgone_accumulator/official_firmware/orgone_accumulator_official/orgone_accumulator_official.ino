@@ -1267,14 +1267,15 @@ uint16_t LED_comp = 1000; //adjust if LEDs are too bright
 
 int aout2 = A14; //dac out
 //int ISRtestPin = 5;
-int aReadTestPin = 6;
+//int aReadTestPin = 6;
 int gate =0;
 int gateOld =0;
 int gateTest =0;
 int table =0;
-int out = 0;
-int muff = 0;
-int ARC;
+//int out = 0;
+//int muff = 0;
+int ARC; 
+int SWC; //slow wave counter
 
 uint16_t aInMain;
 int32_t aInMod; 
@@ -1348,17 +1349,17 @@ float mixMid_fl;
 uint32_t mixDetune;
 uint32_t mixDetuneUp;
 uint32_t mixDetuneDn;
-uint16_t mixDetuneAGCboost;
+//uint16_t mixDetuneAGCboost;
 int32_t CZMix;
-int32_t filterFeedbackMixDry;
-int32_t filterFeedbackMixWet;
-uint8_t clippingFlag;
-int32_t mixSub;
+//int32_t filterFeedbackMixDry;
+//int32_t filterFeedbackMixWet;
+//uint8_t clippingFlag;
+//int32_t mixSub;
 uint8_t detuneLoOn;
 uint8_t detuneMidOn;
 uint8_t detuneHiOn;
 int32_t envVal;
-int32_t CZVal32;
+//int32_t CZVal32;
 int32_t filtSamplesLP;
 int32_t filtSamplesHP;
 
@@ -1404,7 +1405,7 @@ void setup() {
   
   pinMode(aout2, OUTPUT);
   //pinMode(ISRtestPin, OUTPUT); 
-  pinMode(aReadTestPin, OUTPUT);
+  //pinMode(aReadTestPin, OUTPUT);
   pinMode(oSQout, OUTPUT); 
   pinMode(13, OUTPUT);     
   pinMode(A0, INPUT); 
