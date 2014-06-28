@@ -21,7 +21,13 @@ void loop() {
   inCV = (analogRead(A0)); //main v/oct CV in. only use 12 bits of analog in SEPERATE AINS BY CODE 
   //--------------------------------------------------------  
 
+  //______________TUNING OPTIONS
+  //change notesize*1 to notesize*2 or notesize*3 you will have wider range tuning but 2 or 3 semitone steps
   int tuner = inCV+((analogControls[9]>>8)*(noteSize*1))+(analogControls[7]>>4);//coarse and fine tuning
+  //comment out above line and uncomment following line for analog style non stepped tuning 
+  //int tuner = inCV+(analogControls[9]>>1)+(analogControls[7]>>4);
+  //_____________END TUNINGOPTIONS
+  
   inputScaler = float(tuner/octaveSize);  
   inputVOct = pow(2.0,inputScaler); //"real time" exponentiation of CV input!  
   inputConverter = inputVOct*14750; //<-----------------------------number is MASTER TUNING also affected by ISR speed
@@ -71,12 +77,10 @@ void loop() {
   envVal = constrain((aInPos + mixPos),0,4095); //mix the position knob with the modulation from the CV input (fix for bipolar)
   //AGCoffset = 8191 - AGCslow;
 
-  //if ((envVal) <= 2047)  mixMid = (envVal);
-  //else mixMid = constrain(((2047-(envVal))+2047),0,2047);//sets the level of the midpoint wave
-  mixMid = constrain((2047-abs(envVal-2047)),0,2047);//sets the level of the midpoint wave  
+  
+   mixMid = constrain((2047-abs(envVal-2047)),0,2047);//sets the level of the midpoint wave  
   mixHi = constrain((((envVal))-2047),0,2047);//sets the level of the high wave
-  mixLo = constrain((2047-((envVal))),0,2047);//sets the level of the low wave  
-
+  mixLo = constrain((2047-((envVal))),0,2047);//sets the level of the low wave
 
   //---------------------------Detune CV----------------
   aInModDetune = ((4095-analogRead(A12))<<1);  

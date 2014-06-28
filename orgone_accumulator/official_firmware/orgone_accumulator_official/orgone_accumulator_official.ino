@@ -1349,12 +1349,7 @@ float mixMid_fl;
 uint32_t mixDetune;
 uint32_t mixDetuneUp;
 uint32_t mixDetuneDn;
-//uint16_t mixDetuneAGCboost;
 int32_t CZMix;
-//int32_t filterFeedbackMixDry;
-//int32_t filterFeedbackMixWet;
-//uint8_t clippingFlag;
-//int32_t mixSub;
 uint8_t detuneLoOn;
 uint8_t detuneMidOn;
 uint8_t detuneHiOn;
@@ -1364,10 +1359,12 @@ int32_t filtSamplesLP;
 int32_t filtSamplesHP;
 
 int32_t AGCtest;
-int32_t AGCmax;
-int32_t AGCslow;
-float AGCcalc;
-uint16_t AGCoffset;
+int32_t FMX_HiOffset;
+int32_t FMX_HiOffsetCont;
+float FMX_HiOffsetContCub;
+//int32_t AGCslow;
+//float AGCcalc;
+//uint16_t AGCoffset;
 
 
 uint8_t tuneLockOn =0;

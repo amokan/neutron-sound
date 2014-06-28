@@ -4,6 +4,9 @@ void ASSIGNINCREMENTS(){
 
   case 0:  
     UPDATECONTROLS_FM();  
+    
+     
+    
     FMIndexContCubing = FMIndexCont/256.0;  
     FMIndex= (uint32_t((float)(((FMIndexContCubing*FMIndexContCubing*FMIndexContCubing)+(averageaInIAvCubing*averageaInIAvCubing*averageaInIAvCubing))*(inputVOct/4.0))));
     mixDetuneUp = mixDetune*0.787;//because there are 5 oscillators being mixed in the detune mix of ISR
@@ -50,9 +53,65 @@ void ASSIGNINCREMENTS(){
     break; 
 
 
-  case 1://cz
+  
+  case 2://fm mode with x button pressed allows pitch bending on hi position and FM is LFO in fixed (no auto get freq). 
+
+    UPDATECONTROLS_FMALT(); 
+    
+  
+
+    FMIndexContCubing = FMIndexCont/256.0;  
+    FMIndex= (uint32_t((float)(((FMIndexContCubing*FMIndexContCubing*FMIndexContCubing)+(averageaInIAvCubing*averageaInIAvCubing*averageaInIAvCubing))*(inputVOct/8.0))));
+    mixDetuneUp = mixDetune*0.787;//because there are 5 oscillators being mixed in the detune mix of ISR
+    if (averageaInRAv > 4095) {
+      ModRatioCubing = (averageaInRAv-4095)/256.0;
+      aInModRatio = ((ModRatioCubing*ModRatioCubing*ModRatioCubing)/512.0)+1.0;
+    }   
+    else aInModRatio = (averageaInRAv/4096.0); //down direction dont go past zero, or divide by zero could happen 
+
+    mixDetune = (mixLo*detuneLoOn)+(mixMid*detuneMidOn)+(mixHi*detuneHiOn);  
+    mixDetuneDn =  (2047-mixDetune)*0.97; 
+
+
+    if (FMFixedOn){
+      FMMult = (((averageratio>>3)/16.0)+1.0)*aInModRatio;  //FM+fixed mult control 
+      osc_mult[0]=FMMult;
+      osc_mult[1]=4;
+      FMX_HiOffset=mixHi*FMX_HiOffsetCont;
+      o2.phase_increment = inputConverter*osc_mult[1] + FMX_HiOffset ;
+      o4.phase_increment = inputConverter*osc_mult[1]+ detune[0]+ FMX_HiOffset;
+      o6.phase_increment = inputConverter*osc_mult[1]+ detune[3]+ FMX_HiOffset;
+      o8.phase_increment = inputConverter*osc_mult[1]- detune[2]+ FMX_HiOffset;
+      o10.phase_increment = inputConverter*osc_mult[1] - detune[1]+ FMX_HiOffset;
+      o1.phase_increment = inputConverterF*osc_mult[0] ;
+      o3.phase_increment = inputConverterF*osc_mult[0] ;
+      o5.phase_increment = inputConverterF*osc_mult[0] ;
+      o7.phase_increment = inputConverterF*osc_mult[0] ;
+      o9.phase_increment = inputConverterF*osc_mult[0] ;   
+    }
+    else {
+      FMMult = ((int)((averageratio>>9)+1))*aInModRatio; //FM + free 
+      osc_mult[0]=FMMult;
+      osc_mult[1]=4;
+      FMX_HiOffset=mixHi*FMX_HiOffsetCont;
+      o2.phase_increment = inputConverter*osc_mult[1]+ FMX_HiOffset ;
+      o4.phase_increment = inputConverter*osc_mult[1]+ detune[0]+ FMX_HiOffset;
+      o6.phase_increment = inputConverter*osc_mult[1]+ detune[3]+ FMX_HiOffset;
+      o8.phase_increment = inputConverter*osc_mult[1]- detune[2]+ FMX_HiOffset;
+      o10.phase_increment = inputConverter*osc_mult[1] - detune[1]+ FMX_HiOffset;
+      o1.phase_increment = inputConverter*osc_mult[0] ;
+      o3.phase_increment = inputConverter*osc_mult[0]+ detune[0];
+      o5.phase_increment = inputConverter*osc_mult[0]+ detune[3];
+      o7.phase_increment = inputConverter*osc_mult[0]- detune[2];
+      o9.phase_increment = inputConverter*osc_mult[0] - detune[1];
+    }
+    break; 
+case 1://cz
 
     UPDATECONTROLS_CZ(); 
+    
+  
+    
     CZMix = constrain((FMIndexCont+(2047-(averageaInIAv/2.0))),0,2047); 
     mixDetuneUp = mixDetune*0.787;//because there are 5 oscillators being mixed in the detune mix of ISR 
     if (averageaInRAv > 4095) {
@@ -93,52 +152,13 @@ void ASSIGNINCREMENTS(){
       o9.phase_increment = inputConverter*osc_mult[0] - detune[0];
     }
     break; 
-  case 2://chaos mode. oscs modulate each other. 
-
-    UPDATECONTROLS_CHAOS(); 
-
-    FMIndex = ((2047.0-(constrain(((FMIndexCont+(1024.0-(averageaInIAv/4.0)))),0,2047.0)))/50.0)+1,0;  
-    mixLo_fl=mixLo/10.0*(inputVOct/FMIndex); 
-    mixMid_fl=mixMid/10.0*(inputVOct/FMIndex); 
-    mixHi_fl=mixHi/10.0*(inputVOct/FMIndex); 
-    mixDetuneUp = mixDetune; 
-    if (averageaInRAv > 4095) {
-      ModRatioCubing = (averageaInRAv-4095)/256.0;
-      aInModRatio = ((ModRatioCubing*ModRatioCubing*ModRatioCubing)/128.0)+1.0;
-    }   
-    else aInModRatio = (averageaInRAv/4096.0); //down direction dont go past zero, or divide by zero could happen 
-
-    mixDetune = (mixLo*detuneLoOn)+(mixMid*detuneMidOn)+(mixHi*detuneHiOn);  
-    mixDetuneDn =  (2047-mixDetune)*0.97;     
-
-    //FMMult = (((averageratio>>4)))+(aInModRatio/2.0); 
-    FMMult = (aInModRatio*((averageratio/1000)+1))*(inputVOct/4.0);
-    if (FMFixedOn){
-      o1.phase_increment = (inputConverterF*FMMult)*chaosMult3;
-      o2.phase_increment = (inputConverterF*FMMult)*chaosMult2;
-      o3.phase_increment = (inputConverterF*FMMult)*chaosMult1;
-      o4.phase_increment = inputConverter*4 + detune[3];
-      o5.phase_increment = inputConverter*4 - detune[0];
-      o6.phase_increment = inputConverter*4 + detune[0];
-      o7.phase_increment = inputConverter*4 - detune[1];
-      o8.phase_increment = inputConverter*4+ detune[1];
-    }
-    else{
-      o1.phase_increment = (inputConverter*FMMult)*chaosMult3;
-      o2.phase_increment = (inputConverter*FMMult)*chaosMult2;
-      o3.phase_increment = (inputConverter*FMMult)*chaosMult1;
-      o4.phase_increment = inputConverter*4+ detune[3];
-      o5.phase_increment = inputConverter*4- detune[0];
-      o6.phase_increment = inputConverter*4+ detune[0];
-      o7.phase_increment = inputConverter*4- detune[1];
-      o8.phase_increment = inputConverter*4+ detune[1];
-    }
-    break; 
 
 
   case 3://ALT CZ  
 
     UPDATECONTROLS_CZALT();
+    
+  
 
     CZMix = constrain((FMIndexCont+(2047-(averageaInIAv/2.0))),0,2047); 
     CZMix = (CZMix *((mixLo*detuneLoOn)+(mixMid*detuneMidOn)+(mixHi*detuneHiOn)))>>11;  //mixing index with detune buttons.  
