@@ -200,8 +200,8 @@ void UPDATECONTROLS_FM(){
     mixPos = (analogControls[6]>>1); 
     
     FMFixedOn = digitalReadFast(FMFixedSwitch);
-    if (FMFixedOn && !FMFixedOnToggle){inputConverterF = inputConverter;} //sets fixed frequency to current frequency when fixed is pushed.
-    FMFixedOnToggle = FMFixedOn;         
+    if (FMFixedOn){inputConverterF = 10000;} //sets fixed frequency to current frequency when fixed is pushed.
+           
     
     oscMode = (!digitalReadFast(xModeSwitch)<<1)+ digitalReadFast(CZmodeSwitch); 
     break; 

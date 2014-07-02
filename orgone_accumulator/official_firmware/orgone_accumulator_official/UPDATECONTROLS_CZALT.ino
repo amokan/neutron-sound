@@ -189,8 +189,7 @@ void UPDATECONTROLS_CZALT(){
     mixPos = (analogControls[6]>>5)<<4;     
     
     FMFixedOn = digitalReadFast(FMFixedSwitch);
-    if (FMFixedOn && !FMFixedOnToggle){inputConverterF = inputConverter;} //sets fixed frequency to current frequency when fixed is pushed.
-    FMFixedOnToggle = FMFixedOn;         
+    if (FMFixedOn){inputConverterF = 200000;} //sets lowest fixed modulator frequency       
     
     oscMode = (!digitalReadFast(xModeSwitch)<<1)+ digitalReadFast(CZmodeSwitch);    
     break; 
@@ -262,7 +261,7 @@ void UPDATECONTROLS_CZALT(){
       FMTable = FMTablehvoice26; 
       break;
     case 13: 
-      FMTable = voiceTable; 
+      FMTable = AKWF_squ_0011; 
       break;
     case 14: 
       FMTable = noiseTable2;//FMTableCZ;

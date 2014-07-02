@@ -21,7 +21,7 @@ void ASSIGNINCREMENTS(){
 
 
     if (FMFixedOn){
-      FMMult = (((averageratio>>5)/16.0)+1.0)*aInModRatio;  //FM+fixed mult control 
+      FMMult = (((averageratio>>1)/2.1)+1.0)*aInModRatio;  //FM+fixed mult control 
       osc_mult[0]=FMMult;
       osc_mult[1]=4;
       o2.phase_increment = inputConverter*osc_mult[1]  ;
@@ -74,7 +74,7 @@ void ASSIGNINCREMENTS(){
 
 
     if (FMFixedOn){
-      FMMult = (((averageratio>>3)/16.0)+1.0)*aInModRatio;  //FM+fixed mult control 
+      FMMult = (((averageratio>>1)/2.1)+1.0)*aInModRatio;  //FM+fixed mult control 
       osc_mult[0]=FMMult;
       osc_mult[1]=4;
       FMX_HiOffset=mixHi*FMX_HiOffsetCont;
@@ -124,11 +124,12 @@ case 1://cz
     mixDetuneDn =  (2047-mixDetune)*0.97; 
 
 
-    FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+    
+    if (FMFixedOn){
+      FMMult = (float)((((averageratio>>4)/1.1))+1.0)*aInModRatio; //CZ + fixed + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
-    if (FMFixedOn){
-      o2.phase_increment = inputConverterF*osc_mult[1]; //modulation not detuned for better acid sound
+      o2.phase_increment = inputConverterF*osc_mult[1]; 
       o4.phase_increment = inputConverterF*osc_mult[1];
       o6.phase_increment = inputConverterF*osc_mult[1];
       o8.phase_increment = inputConverterF*osc_mult[1];
@@ -140,6 +141,9 @@ case 1://cz
       o9.phase_increment = inputConverter*osc_mult[0] - detune[0];
     }
     else{
+      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+    osc_mult[0]=4;
+    osc_mult[1]=FMMult;
       o2.phase_increment = inputConverter*osc_mult[1];
       o4.phase_increment = inputConverter*osc_mult[1]+ detune[3];
       o6.phase_increment = inputConverter*osc_mult[1]+ detune[2];
@@ -174,10 +178,11 @@ case 1://cz
     mixDetuneDn =  (2047-mixDetune)*0.97; 
 
 
-    FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+    
+    if (FMFixedOn){
+      FMMult = (float)((((averageratio>>4)/1.1))+1.0)*aInModRatio; //CZ + fixed + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
-    if (FMFixedOn){
       o2.phase_increment = inputConverterF*osc_mult[1]; //modulation not detuned for better acid sound
       o4.phase_increment = inputConverterF*osc_mult[1];
       o6.phase_increment = inputConverterF*osc_mult[1];
@@ -190,6 +195,9 @@ case 1://cz
       o9.phase_increment = inputConverter*osc_mult[0] - detune[0];
     }
     else{
+      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+    osc_mult[0]=4;
+    osc_mult[1]=FMMult;
       o2.phase_increment = inputConverter*osc_mult[1];
       o4.phase_increment = inputConverter*osc_mult[1]+ detune[3];
       o6.phase_increment = inputConverter*osc_mult[1]+ detune[2];
