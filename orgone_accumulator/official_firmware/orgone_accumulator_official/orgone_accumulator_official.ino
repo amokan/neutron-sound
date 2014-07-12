@@ -1446,6 +1446,7 @@ pinMode(LED_Mid, OUTPUT);
 pinMode(LED_Hi, OUTPUT);
 //pinMode(LED_PWM, OUTPUT);
   
+  digitalWrite(13, HIGH);
   
   analogReference(EXTERNAL);
   analogWriteResolution(13); 
