@@ -30,7 +30,8 @@ void loop() {
   
   inputScaler = float(tuner/octaveSize);  
   inputVOct = pow(2.0,inputScaler); //"real time" exponentiation of CV input!  
-  inputConverter = inputVOct*14750; //<-----------------------------number is MASTER TUNING also affected by ISR speed
+  inputConverter = inputVOct*59000; //<-----------------------------number is MASTER TUNING also affected by ISR speed 
+  //divide by 4 if you want to use -1, -2 octaves
 
   //------------------------------Position CV---------------------
   aInPos = 4095-((analogRead(A16))) ;  
