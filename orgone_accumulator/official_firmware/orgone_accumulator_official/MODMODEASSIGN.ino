@@ -141,7 +141,7 @@ case 1://cz
       o9.phase_increment = inputConverter*osc_mult[0] - detune[0];
     }
     else{
-      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + free + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
       o2.phase_increment = inputConverter*osc_mult[1];
@@ -195,7 +195,7 @@ case 1://cz
       o9.phase_increment = inputConverter*osc_mult[0] - detune[0];
     }
     else{
-      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + fixed + free         
+      FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + free + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
       o2.phase_increment = inputConverter*osc_mult[1];

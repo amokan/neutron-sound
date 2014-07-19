@@ -1,5 +1,7 @@
 void outUpdateISR(void){
- noInterrupts();   
+ //noInterrupts();  
+
+ 
   
 
   oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
@@ -222,7 +224,7 @@ void outUpdateISR(void){
     break;
 
   }
-  interrupts();  
+  //interrupts();  
 }
 
 

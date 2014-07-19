@@ -1,0 +1,17 @@
+void gateISR(){
+
+ o1.phase = 
+      o2.phase = 
+      o3.phase = 
+      o4.phase = 
+      o5.phase = 
+      o6.phase = 
+      o7.phase =
+      o8.phase = 
+      o9.phase = 
+      o10.phase = 0;
+    detuneScaler = 0;
+    
+    loopReset = 1;
+    
+}

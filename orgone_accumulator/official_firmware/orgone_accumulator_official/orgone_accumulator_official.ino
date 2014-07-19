@@ -1319,7 +1319,7 @@ int readingsratio[numreadingsratio];
 int controlAveragingIndex = 0;
 int totalratio;
 int averageratio;
-int BSFfreq;
+int loopReset;
 
 const int numreadingsaInRAv = 16; //higher number if FM is noisy. but it slows down response.
 float readingsaInRAv[numreadingsaInRAv];
@@ -1357,6 +1357,7 @@ int32_t envVal;
 //int32_t CZVal32;
 int32_t filtSamplesLP;
 int32_t filtSamplesHP;
+int tuner;
 
 int32_t AGCtest;
 int32_t FMX_HiOffset;
@@ -1451,7 +1452,7 @@ pinMode(LED_Hi, OUTPUT);
   analogReference(EXTERNAL);
   analogWriteResolution(13); 
   analogReadResolution(13); 
-  analogReadAveraging(32);  
+  analogReadAveraging(16);  
   //analogWriteFrequency(14, 80000);
   outUpdateTimer.begin(outUpdateISR, 12); //this is the output update rate in uS
  // 12 = 83.333khz
@@ -1465,7 +1466,7 @@ pinMode(LED_Hi, OUTPUT);
  // 20 = 50khz  
   // lower if your ISR takes up too much time. and strange or no sounds happen.
   //this affects master tuning 
-  
+attachInterrupt(gateIn, gateISR, RISING);  
 
   for(int i=0; i <= 511; i++){
     noiseTable[i]=random(-32768,32768);
@@ -1490,6 +1491,7 @@ pinMode(LED_Hi, OUTPUT);
 //MODMODEASSIGN void ASSIGNINCREMENTS() sets which oscs get what increment depending on mode. rate is 1 per main loop.
 //UPDATECONTROLS void UPDATECONTROLS()do things that can be slow, steps through a different control each main loop with ARC.
 //OSC_ISR void outUpdateISR(void) this happens at the update frequency set by outUpdateTimer.begin only put time critical stuff here.
+//gateISR interrupt when gate input rises.
 
 
 
