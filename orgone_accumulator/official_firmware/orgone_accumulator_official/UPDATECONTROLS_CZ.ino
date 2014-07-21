@@ -6,7 +6,10 @@ void UPDATECONTROLS_CZ(){
          
     break;
 
-  case 9:    
+  case 9:   
+ 
+    Serial.println((float)o1.phase_increment/51550); 
+    //outputs the frequency on USB serial. tune lock, FM and X must be off
     
      
     break;
@@ -213,13 +216,8 @@ void UPDATECONTROLS_CZ(){
      break; 
 
   case 10:
-    FMIndexCont = (int)(analogControls[1]>>2);
-   
-    
-//    else {
-//      FMIndexContCubing = (analogControls[8])/1024.0;
-//      FMIndexCont = (int) (FMIndexContCubing* FMIndexContCubing*FMIndexContCubing); 
-//    }
+    FMIndexCont = (int)(analogControls[1]>>2);    
+
     
      switch (analogControls[3]>>9){
     case 0: 

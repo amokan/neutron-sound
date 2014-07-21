@@ -1483,7 +1483,7 @@ attachInterrupt(gateIn, gateISR, RISING);
       o9.phase = 
       o10.phase = 0;
 
-  //Serial.begin(28800);
+  Serial.begin(28800);
 }
 
 //see other pages for 
