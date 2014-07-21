@@ -1407,7 +1407,7 @@ void setup() {
   pinMode(oSQout, OUTPUT); 
   pinMode(13, OUTPUT);     
   pinMode(A0, INPUT); 
-  pinMode(A1, INPUT);
+  pinMode(A1, OUTPUT);
   pinMode(A2, INPUT);
   pinMode(A3, INPUT);
   pinMode(A4, INPUT);
