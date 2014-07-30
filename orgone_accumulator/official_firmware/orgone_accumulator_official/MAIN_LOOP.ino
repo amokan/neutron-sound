@@ -32,30 +32,14 @@ if (loopReset == 1)goto evilGoto;
   if (loopReset == 1)goto evilGoto;
   inputScaler = float(tuner/octaveSize);  
   if (loopReset == 1)goto evilGoto;
-  inputVOct = pow(2.0,inputScaler); //"real time" exponentiation of CV input!  
+  
+  inputVOct = powf(2.0,inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function)
+  //inputVOct = sq(inputScaler); 
+  
   inputConverter = inputVOct*59000; //<-----------------------------number is MASTER TUNING also affected by ISR speed 
   //divide by 2 if you want it play 1 octave lower, 4 for 2 octaves etc.
   //you can also fine tune it to just how you like it by tweaking the number up and down.
-  if (loopReset == 1)goto evilGoto;
-//---------------------------Detune CV----------------
-  aInModDetune = ((4095-analogRead(A12))<<1);  
-  //--------------------------------------------------
   
-  aInModDetuneCubing = max((aInModDetune+detuneAmountCont),0)/64.0;
-  aInModDetune = ((aInModDetuneCubing*aInModDetuneCubing*aInModDetuneCubing)/8.0);
-  //switches between prime and even spaced detune modes.
-  if (primeDetuneOn){   //Detune does not follow pitch 
-    detuneScaler = aInModDetune * mixDetune ;
-    for (int i=0; i <= 3; i++){  
-      detune[i] = (uint32_t)((detuneScaler/300000.0) * primes[i]); 
-
-    }
-  }
-  else{  //detune follows pitch, detune up to "hoover"
-    detuneScaler = aInModDetune;
-    detune[1] = detune[3]=(uint32_t)((detuneScaler/32768.0)*(inputConverter));
-    detune[2] = detune[0]=(uint32_t)((detuneScaler/16384.0)*(inputConverter)) ; 
-  }
 if (loopReset == 1)goto evilGoto;
   //---------------------------------------------------------------------
   analogControls[ARC] = analogRead(ARC+2);//step through control knob readings one per cycle, humans are slow
@@ -81,6 +65,7 @@ if (loopReset == 1)goto evilGoto;
   
   evilGoto:
   
+  
  //------------------------------Position CV---------------------
   aInPos = 4095-((analogRead(A16))) ;  
   //------------------------------------------------------------------
@@ -90,16 +75,25 @@ if (loopReset == 1)goto evilGoto;
    mixMid = constrain((2047-abs(envVal-2047)),0,2047);//sets the level of the midpoint wave  
   mixHi = constrain((((envVal))-2047),0,2047);//sets the level of the high wave
   mixLo = constrain((2047-((envVal))),0,2047);//sets the level of the low wave
+  
+  
+  
+  if (loopReset == 1)goto evilGoto;
+//---------------------------Detune CV----------------
+  aInModDetune = ((4095-analogRead(A12))<<1);  
+  //--------------------------------------------------
+ 
+  DODETUNING();  
+   
 if (loopReset == 1)goto evilGoto;
     //---------------------------Index CV---------------------------------
   aInModIndex = analogRead(A15);
   //----------------------------------------------------------------------
-if (loopReset == 1)goto evilGoto;
+  
   ASSIGNINCREMENTS();  
+  
 if (loopReset == 1)goto evilGoto;
-  UPDATE_LEDS();
-  //}
-  //loopReset = 0;
+  UPDATE_LEDS();  
 }
 
 

@@ -1,3 +1,5 @@
+//Neutron-sound.com 
+//Orgone Accumulator 1.0.2
 //these wavetables can be replaced with ones converted from the AKWF collection. they are at
 //https://github.com/jakplugg/neutron-sound/tree/master/orgone_accumulator/AKWF_converted
 
@@ -1157,6 +1159,7 @@ oSQ;
 struct oscillator1 //maybe these can be arrayed, dont know how
 {
   uint32_t phase =0; 
+  uint32_t phaseOffset =0;
   uint32_t phaseOld = 0; 
   int32_t wave;  
   //int32_t wave2; 
@@ -1177,7 +1180,8 @@ struct oscillator2
 o2;
 struct oscillator3
 {
-  uint32_t phase =0; 
+  uint32_t phase =0;
+ uint32_t phaseOffset =0; 
   uint32_t phaseOld = 0;   
   int32_t index;
   int32_t wave;  
@@ -1195,6 +1199,7 @@ o4;
 struct oscillator5
 {
   uint32_t phase =0;
+  uint32_t phaseOffset =0;
   uint32_t phaseOld = 0; 
   int32_t index;
   int32_t wave;  
@@ -1212,6 +1217,7 @@ o6;
 struct oscillator7
 {
   uint32_t phase =0;
+  uint32_t phaseOffset =0;
   uint32_t phaseOld = 0; 
   int32_t index;
   int32_t wave;  
@@ -1229,6 +1235,7 @@ o8;
 struct oscillator9
 {
   uint32_t phase =0;
+  uint32_t phaseOffset =0;
   uint32_t phaseOld = 0; 
   int32_t index;
   int32_t wave;  
@@ -1291,6 +1298,8 @@ float detuneAmountCont;
 float detuneAmountContCubing;
 uint32_t detune[]= { //array holds detune amounts
   0,0,0,0,};
+  int32_t detuneP[]= { //array holds detune amounts
+  0,0,0,0,};
 float primes[]= {163.0,443.0,397.0,223.0};//primes for detuning
 uint8_t primeDetuneOn;
 uint8_t WTShift = 23;
@@ -1316,7 +1325,7 @@ const int16_t *FMTable;
 //running average for sensetive controls
 const int numreadingsratio = 16; 
 int readingsratio[numreadingsratio];
-int controlAveragingIndex = 0;
+int controlAveragingIndex = 8;
 int totalratio;
 int averageratio;
 int loopReset;
@@ -1391,12 +1400,11 @@ uint8_t oscSync;
 uint8_t oscSyncTest;
 uint8_t buh;
 int inCV = 1200;
+int cycleCounter;
 
 //int waveIncrement = 1;
 IntervalTimer outUpdateTimer;
 elapsedMillis sinceTest1; //timer for self generated notes. not used except for testing
-
-
 
 // the setup routine runs once when you press reset:
 void setup() {                 
@@ -1454,7 +1462,7 @@ pinMode(LED_Hi, OUTPUT);
   analogReadResolution(13); 
   analogReadAveraging(16);  
   //analogWriteFrequency(14, 80000);
-  outUpdateTimer.begin(outUpdateISR, 12); //this is the output update rate in uS
+  outUpdateTimer.begin(outUpdateISR, 12); //this is the oscillator and DAC output update rate in uS
  // 12 = 83.333khz
  // 13 = 76.923
  // 14 = 71.428

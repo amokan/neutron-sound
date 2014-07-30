@@ -119,10 +119,10 @@ void UPDATECONTROLS_CZALT(){
       waveTable2Link = blipTable; 
       break;
     case 13: 
-      waveTable2Link = voiceTable; 
+      waveTable2Link = noiseTable2; 
       break;
     case 14: 
-      waveTable2Link = primeTable; 
+      waveTable2Link = noiseTable; 
       break;
     case 15: 
       waveTable2Link = nothingTable; 
@@ -132,58 +132,9 @@ void UPDATECONTROLS_CZALT(){
     break;
 
   case 6: //select hi wave
-    switch (analogControls[4]>>9){
-    case 0: 
-      waveTableLink = sinTable; 
-      break;
-    case 1: 
-      waveTableLink = triTable; 
-      break;
-    case 2: 
-      waveTableLink = sawTable; 
-      break;
-    case 3: 
-      waveTableLink = scarabTable1; 
-      break;
-    case 4: 
-      waveTableLink = scarabTable2; 
-      break;
-    case 5: 
-      waveTableLink = pulseTable; //change
-      break;
-    case 6: 
-      waveTableLink = pnoTable; 
-      break;
-    case 7: 
-      waveTableLink = bassTable1; 
-      break;
-    case 8: 
-      waveTableLink = bassTable2; 
-      break;
-    case 9: 
-      waveTableLink = celloTable; 
-      break;
-    case 10: 
-      waveTableLink = violTable; 
-      break;
-    case 11: 
-      waveTableLink = distoTable; 
-      break;
-    case 12: 
-      waveTableLink = blipTable; //change
-      break;
-    case 13: 
-      waveTableLink = voiceTable; 
-      break;
-    case 14: 
-      waveTableLink = noiseTable2; 
-      break;
-    case 15: 
-      waveTableLink = noiseTable; 
-      break;    
-    }
-
-    break;  
+    
+   FMX_HiOffsetCont = (int32_t)((analogControls[4])-4096)*8 ;
+    //FMX_HiOffsetCont = FMX_HiOffsetContCub*FMX_HiOffsetContCub*FMX_HiOffsetContCub  ;      
 
   case 1:     
     mixPos = (analogControls[6]>>5)<<4;     
