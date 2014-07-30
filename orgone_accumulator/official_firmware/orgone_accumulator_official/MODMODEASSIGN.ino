@@ -180,10 +180,10 @@ case 1://cz
 
     
     if (FMFixedOn){
-      FMMult = (float)(((averageratio>>3)+1)/16)*aInModRatio; //CZ + fixed + free         
+      FMMult = (float)((((averageratio>>2)+1)/8)*aInModRatio); //CZ + fixed + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
-    FMX_HiOffset=(mixHi*FMX_HiOffsetCont)/128;
+    FMX_HiOffset=(mixHi*FMX_HiOffsetCont)/64;
       o2.phase_increment = inputConverterF*osc_mult[1]; //modulation not detuned 
       o4.phase_increment = inputConverterF*osc_mult[1];
       o6.phase_increment = inputConverterF*osc_mult[1];

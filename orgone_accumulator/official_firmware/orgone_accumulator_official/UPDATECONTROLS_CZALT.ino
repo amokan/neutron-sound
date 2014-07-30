@@ -140,7 +140,7 @@ void UPDATECONTROLS_CZALT(){
     mixPos = (analogControls[6]>>5)<<4;     
     
     FMFixedOn = digitalReadFast(FMFixedSwitch);
-    if (FMFixedOn){inputConverterF = 200000;} //sets lowest fixed modulator frequency       
+    if (FMFixedOn){inputConverterF = 20000;} //sets lowest fixed modulator frequency       
     
     oscMode = (!digitalReadFast(xModeSwitch)<<1)+ digitalReadFast(CZmodeSwitch);    
     break; 
