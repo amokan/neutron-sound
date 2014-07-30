@@ -1250,6 +1250,14 @@ struct oscillator10
 } 
 o10;
 
+struct lfo
+{
+  uint32_t phase =0;  
+  int32_t wave;  
+  int32_t phase_increment = 0;         
+} 
+lfo;
+
 #define primeSwitch 3 //ok
 //#define resyncSwitch 8
 #define CZmodeSwitch 6

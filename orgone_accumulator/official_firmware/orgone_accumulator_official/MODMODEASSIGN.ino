@@ -180,7 +180,7 @@ case 1://cz
 
     
     if (FMFixedOn){
-      FMMult = (float)((((averageratio>>2)+1)/8)*aInModRatio); //CZ + fixed + free         
+      FMMult = (float)((((averageratio>>2)+1)/3.0)*aInModRatio); //CZ + fixed + free         
     osc_mult[0]=4;
     osc_mult[1]=FMMult;
     FMX_HiOffset=(mixHi*FMX_HiOffsetCont)/64;
@@ -194,6 +194,7 @@ case 1://cz
       o5.phase_increment = inputConverter*osc_mult[0]+ detune[2];
       o7.phase_increment = inputConverter*osc_mult[0]- detune[1];
       o9.phase_increment = inputConverter*osc_mult[0]- detune[0];
+      lfo.phase_increment = inputConverterF*(osc_mult[1]/4.0);
     }
     else{
       FMMult = (float)((((averageratio>>5)/7.0))+1.0)*aInModRatio; //CZ + free + free         
@@ -210,6 +211,7 @@ case 1://cz
       o5.phase_increment = inputConverter*osc_mult[0]+ detune[2];
       o7.phase_increment = inputConverter*osc_mult[0]- detune[1];
       o9.phase_increment = inputConverter*osc_mult[0]- detune[0];
+      lfo.phase_increment = inputConverterF*(osc_mult[1]/4.0);
     }
 
     break; 

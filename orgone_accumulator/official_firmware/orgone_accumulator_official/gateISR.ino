@@ -12,7 +12,7 @@ analogWrite(aout2,4000);
       o9.phase =       
       o10.phase = 0;
     //detuneScaler = 0;
-    cycleCounter= 0;
+    //cycleCounter= 0;
     //ARC = SWC = 0;
     
     loopReset = 1;
