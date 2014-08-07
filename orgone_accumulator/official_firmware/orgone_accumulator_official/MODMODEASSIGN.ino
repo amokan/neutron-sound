@@ -202,10 +202,10 @@ case 1://cz
     osc_mult[1]=FMMult;
     FMX_HiOffset=(mixHi*FMX_HiOffsetCont)/128;
       o2.phase_increment = inputConverter*osc_mult[1];
-      o4.phase_increment = inputConverter*osc_mult[1];
-      o6.phase_increment = inputConverter*osc_mult[1];
-      o8.phase_increment = inputConverter*osc_mult[1];
-      o10.phase_increment = inputConverter*osc_mult[1];
+      o4.phase_increment = inputConverter*osc_mult[1]+ detune[3];;
+      o6.phase_increment = inputConverter*osc_mult[1]+ detune[2];;
+      o8.phase_increment = inputConverter*osc_mult[1]- detune[1];;
+      o10.phase_increment = inputConverter*osc_mult[1]- detune[0];;
       o1.phase_increment = inputConverter*osc_mult[0];
       o3.phase_increment = inputConverter*osc_mult[0]+ detune[3];
       o5.phase_increment = inputConverter*osc_mult[0]+ detune[2];

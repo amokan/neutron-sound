@@ -9,7 +9,8 @@ analogWrite(aout2,4000);
       o6.phase =     
       o7.phase =       
       o8.phase =       
-      o9.phase =       
+      o9.phase = 
+      lfo.phase =      
       o10.phase = 0;
     //detuneScaler = 0;
     //cycleCounter= 0;

@@ -133,7 +133,7 @@ void UPDATECONTROLS_CZALT(){
 
   case 6: //select hi wave
     
-   FMX_HiOffsetCont = (int32_t)((analogControls[4])-4096)*8 ;
+   FMX_HiOffsetCont = (int32_t)((analogControls[4])-4096) ;
     //FMX_HiOffsetCont = FMX_HiOffsetContCub*FMX_HiOffsetContCub*FMX_HiOffsetContCub  ;      
 
   case 1:     

@@ -169,33 +169,23 @@ void outUpdateISR(void){
     //main oscillator
     o1.phase = o1.phase + o1.phase_increment; 
   o1.phaseOffset = o1.phase + (FMX_HiOffset * lfo.wave);    
-    noiseTable[o1.phase>>23]= random(-32767,32767); //replace noise cells with random values.
-    //if (o1.phaseOld > o1.phase)o2.phase = 0; //check for sync reset osc in CZ mode.        
-    //o1.phaseOld = o1.phase;       
+    noiseTable[o1.phase>>23]= random(-32767,32767); //replace noise cells with random values.      
     o2.phase = o2.phase +  o2.phase_increment; 
     //unisone oscillators  ------------3-4---------
     o3.phase = o3.phase  + o3.phase_increment;
-    o3.phaseOffset = o3.phase + (FMX_HiOffset * lfo.wave);
-    //if (o3.phaseOld > o3.phase) o4.phase = 0;
-    //o3.phaseOld = o3.phase;    
+    o3.phaseOffset = o3.phase + (FMX_HiOffset * lfo.wave);     
     o4.phase = o4.phase +  o4.phase_increment;   
     //---------------------------------5-6------------ 
     o5.phase = o5.phase + o5.phase_increment;
-    o5.phaseOffset = o5.phase + (FMX_HiOffset * lfo.wave);  
-    //if (o5.phaseOld > o5.phase) o6.phase = 0;
-    //o5.phaseOld = o5.phase;     
+    o5.phaseOffset = o5.phase + (FMX_HiOffset * lfo.wave);          
     o6.phase = o6.phase + o6.phase_increment;   
     //-------------------------------7-8-------------- 
     o7.phase = o7.phase + o7.phase_increment; 
-    o7.phaseOffset = o7.phase + (FMX_HiOffset * lfo.wave); 
-    //if (o7.phaseOld > o7.phase) o8.phase = 0;
-    //o7.phaseOld = o7.phase;       
+    o7.phaseOffset = o7.phase + (FMX_HiOffset * lfo.wave);         
     o8.phase = o8.phase +  o8.phase_increment; 
     //------------------------------9-10-------------------
     o9.phase = o9.phase + o9.phase_increment; 
-    o9.phaseOffset = o9.phase + (FMX_HiOffset * lfo.wave);
-    //if (o9.phaseOld > o9.phase) o10.phase = 0;
-    //o9.phaseOld = o9.phase;       
+    o9.phaseOffset = o9.phase + (FMX_HiOffset * lfo.wave);        
     o10.phase = o10.phase + o10.phase_increment;   
     
     lfo.phase = lfo.phase + lfo.phase_increment;
