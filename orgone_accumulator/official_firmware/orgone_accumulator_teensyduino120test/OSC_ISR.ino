@@ -1,7 +1,7 @@
-void outUpdateISR(void){
+void FASTRUN outUpdateISR(void){
  //noInterrupts();  
 
- //digitalWriteFast (oSQout,0);//temp testing OC
+ digitalWriteFast (oSQout,0);//temp testing OC
  
   
   oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc

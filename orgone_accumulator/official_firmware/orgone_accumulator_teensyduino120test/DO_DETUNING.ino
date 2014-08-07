@@ -1,4 +1,4 @@
-void DODETUNING(){
+void FASTRUN DODETUNING(){
 
     aInModDetuneCubing = max((aInModDetune+detuneAmountCont),0)/64.0;
     aInModDetune = ((aInModDetuneCubing*aInModDetuneCubing*aInModDetuneCubing)/8.0);

@@ -1,4 +1,4 @@
-void UPDATECONTROLS_FMALT(){
+void FASTRUN UPDATECONTROLS_FMALT(){
      
 
   switch (ARC+1) {

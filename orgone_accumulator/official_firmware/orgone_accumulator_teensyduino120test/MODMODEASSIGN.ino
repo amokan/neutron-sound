@@ -1,4 +1,4 @@
-void ASSIGNINCREMENTS(){
+void FASTRUN ASSIGNINCREMENTS(){
 
   switch(oscMode){ //switches which oscs get changed by FM and how much multiplier ;
 

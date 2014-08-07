@@ -1,4 +1,4 @@
-void UPDATECONTROLS_CZ(){
+void FASTRUN UPDATECONTROLS_CZ(){
 
   switch (ARC+1) {
 

@@ -1,4 +1,4 @@
-void loop() { 
+void FASTRUN loop() { 
   //while (loopReset == 0){
     if (loopReset == 1)goto evilGoto; //these will jump to the same place in the loop when a gateISR happens.
     //it is a temporary fix.
@@ -23,7 +23,7 @@ if (loopReset == 1)goto evilGoto;
   inCV = (analogRead(A0)); //main v/oct CV in. only use 12 bits of analog in SEPERATE AINS BY CODE 
   //--------------------------------------------------------  
 if (loopReset == 1)goto evilGoto;
-  digitalWriteFast (oSQout,0);
+  //digitalWriteFast (oSQout,0);
   //______________TUNING OPTIONS
   //change notesize*1 to notesize*2 or notesize*3 you will have wider range tuning but 2 or 3 semitone steps
   tuner = inCV+((analogControls[9]>>8)*(noteSize*1))+(analogControls[7]>>4);//coarse and fine tuning
@@ -36,7 +36,7 @@ if (loopReset == 1)goto evilGoto;
   
   inputVOct = powf(2.0,inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function)
   //inputVOct = sq(inputScaler); 
-  digitalWriteFast (oSQout,1);
+  //digitalWriteFast (oSQout,1);
   inputConverter = inputVOct*59000; //<-----------------------------number is MASTER TUNING also affected by ISR speed 
   //divide by 2 if you want it play 1 octave lower, 4 for 2 octaves etc.
   //you can also fine tune it to just how you like it by tweaking the number up and down.
@@ -64,9 +64,7 @@ if (loopReset == 1)goto evilGoto;
   averageaInIAv = totalaInIAv / numreadingsaInRAv;
   
   
-  evilGoto:
-  
-  
+  evilGoto:  
  //------------------------------Position CV---------------------
   aInPos = 4095-((analogRead(A16))) ;  
   //------------------------------------------------------------------
@@ -84,14 +82,14 @@ if (loopReset == 1)goto evilGoto;
   aInModDetune = ((4095-analogRead(A12))<<1);  
   //--------------------------------------------------
  
-  DODETUNING();  
+DODETUNING();  
    
 if (loopReset == 1)goto evilGoto;
     //---------------------------Index CV---------------------------------
   aInModIndex = analogRead(A15);
   //----------------------------------------------------------------------
   
-  ASSIGNINCREMENTS();  
+ASSIGNINCREMENTS();  
   
 if (loopReset == 1)goto evilGoto;
   UPDATE_LEDS();  

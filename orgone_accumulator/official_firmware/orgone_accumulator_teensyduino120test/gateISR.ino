@@ -1,4 +1,4 @@
-void gateISR(){
+void FASTRUN gateISR(){
 //  noInterrupts();
 analogWrite(aout2,4000);
        o1.phase =        

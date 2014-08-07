@@ -1,4 +1,4 @@
-void UPDATECONTROLS_FM(){
+void FASTRUN UPDATECONTROLS_FM(){
      
 
   switch (ARC+1) {

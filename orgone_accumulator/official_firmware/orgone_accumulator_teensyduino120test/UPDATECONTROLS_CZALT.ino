@@ -1,4 +1,4 @@
-void UPDATECONTROLS_CZALT(){
+void FASTRUN UPDATECONTROLS_CZALT(){
 
   switch (ARC+1) {
 

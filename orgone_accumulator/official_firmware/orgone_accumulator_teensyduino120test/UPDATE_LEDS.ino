@@ -1,4 +1,4 @@
-void UPDATE_LEDS(){
+void FASTRUN UPDATE_LEDS(){
 
   switch (ARC+1) {
     case 1:
