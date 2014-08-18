@@ -132,8 +132,9 @@ void UPDATECONTROLS_CZALT(){
     break;
 
   case 6: //select hi wave
-    
-   FMX_HiOffsetCont = (int32_t)((analogControls[4])-4096) ;
+   
+   FMX_HiOffsetContCub = (analogControls[4]>>3)-512; 
+   FMX_HiOffsetCont = (int32_t)(FMX_HiOffsetContCub*FMX_HiOffsetContCub*FMX_HiOffsetContCub)>>20;
     //FMX_HiOffsetCont = FMX_HiOffsetContCub*FMX_HiOffsetContCub*FMX_HiOffsetContCub  ;      
 
   case 1:     
@@ -172,53 +173,57 @@ void UPDATECONTROLS_CZALT(){
 //    }
     
      switch (analogControls[3]>>9){
-    case 0: 
-      FMTable = sinTable; 
+       case 0: 
+      FMTable = sinTable;
+      FMTableAMX = DCTable; 
       break;
     case 1: 
-      FMTable = triTable; 
+      FMTable = sinTable;
+      FMTableAMX = sinTable; 
       break;
     case 2: 
-      FMTable = FMTableS180; 
-      break;
+      FMTable = triTable;
+      FMTableAMX = FMTableSQ; 
+      break;    
     case 3: 
-      FMTable = FMTableSQ; 
+      FMTable = FMTableAMX = FMTableSQ; 
       break;
     case 4: 
-      FMTable = FMTableSQR; 
+      FMTable = FMTableAMX = FMTableSQR; 
       break;
     case 5: 
-      FMTable = AKWF_0003; 
+      FMTable = FMTableAMX = AKWF_0003; 
       break;
     case 6: 
-      FMTable = pnoTable; 
+      FMTable = FMTableAMX = pnoTable; 
       break;
     case 7: 
-      FMTable = bassTable1; 
+      FMTable = FMTableAMX = bassTable1; 
       break;
     case 8: 
-      FMTable = bassTable2; 
+      FMTable = FMTableAMX = bassTable2; 
       break;
     case 9: 
-      FMTable = celloTable; 
+      FMTable = FMTableAMX = celloTable; 
       break;
     case 10: 
-      FMTable = violTable; 
+      FMTable = FMTableAMX = violTable; 
       break;
     case 11: 
-      FMTable = FMTableFM98; 
+      FMTable = FMTableAMX = FMTableFM98; 
       break;
     case 12: 
-      FMTable = FMTablehvoice26; 
+      FMTable = FMTableAMX = FMTablehvoice26; 
       break;
     case 13: 
-      FMTable = AKWF_squ_0011; 
+      FMTable = AKWF_squ_0011;
+      FMTableAMX = sinTable; 
       break;
     case 14: 
-      FMTable = noiseTable2;//FMTableCZ;
+      FMTable = FMTableAMX = noiseTable2;//FMTableCZ;
       break;
     case 15: 
-      FMTable = noiseTable; 
+      FMTable = FMTableAMX = noiseTable; 
       break;    
     }
     
