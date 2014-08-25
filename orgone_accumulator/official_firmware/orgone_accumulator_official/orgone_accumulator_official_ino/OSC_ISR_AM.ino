@@ -1,8 +1,8 @@
 void OSC_ISR_AM(){
   
   
- // oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
- // digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
+ oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
+ digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
   
   
  //-------------------------------------------AM MODE OSCILLATORS-----------------------------------------------
@@ -64,11 +64,7 @@ void OSC_ISR_AM(){
 
     AGCtest = ((((o9.wave+o7.wave+o5.wave+o3.wave+o1.wave)>>2)*((int)mixDetuneUp))>>14)  +  (((o1.wave*((int)mixDetuneDn))>>14)); //main out and mix detune
     analogWrite(aout2,AGCtest+4000);
-  
  
-   
-   
- //digitalWriteFast (oSQout,1);//temp testing OC 
 }
 
 

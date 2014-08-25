@@ -1,11 +1,11 @@
 void OSC_ISR_FM(){
 
 
- //digitalWriteFast (oSQout,0);//temp testing OC
+ 
  
   
- // oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
- // digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
+ oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
+ digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
   
   
 
@@ -55,7 +55,6 @@ void OSC_ISR_FM(){
     analogWrite(aout2,AGCtest+4000);
     
    
- //digitalWriteFast (oSQout,1);//temp testing OC 
 }
 
 

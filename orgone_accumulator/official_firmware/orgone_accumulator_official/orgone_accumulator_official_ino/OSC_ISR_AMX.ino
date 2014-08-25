@@ -1,7 +1,6 @@
 void OSC_ISR_AMX(){
- //noInterrupts();  
+ 
 
- //digitalWriteFast (oSQout,0);//temp testing OC
  
   
   oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
@@ -69,8 +68,7 @@ lfo.phase = lfo.phase + lfo.phase_increment;
     
     analogWrite(aout2,AGCtest+4000);
 
-   
- //digitalWriteFast (oSQout,1);//temp testing OC 
+
 }
 
 

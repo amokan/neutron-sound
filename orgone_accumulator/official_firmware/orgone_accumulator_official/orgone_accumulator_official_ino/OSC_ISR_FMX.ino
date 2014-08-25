@@ -1,7 +1,4 @@
 void OSC_ISR_FMX(){
- //noInterrupts();  
-
- //digitalWriteFast (oSQout,0);//temp testing OC
  
   
   oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
@@ -50,10 +47,10 @@ void OSC_ISR_FMX(){
 
     AGCtest = ((((o10.wave+o4.wave+o6.wave+o8.wave+o2.wave)>>2)*((int)mixDetuneUp))>>14)  +  (((o2.wave*((int)mixDetuneDn))>>14)); //main out and mix detune
     analogWrite(aout2,AGCtest+4000);
-        
+ 
   
    
- //digitalWriteFast (oSQout,1);//temp testing OC 
+ 
 }
 
 

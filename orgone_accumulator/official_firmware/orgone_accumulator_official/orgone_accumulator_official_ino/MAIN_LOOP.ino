@@ -47,9 +47,9 @@ void loop() {
 
   if (loopReset == 1)goto evilGoto;
 
-  digitalWriteFast (oSQout,0);//temp testing OC
+  //digitalWriteFast (oSQout,0);//temp testing OC
   inputVOct = powf(2.0,inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function)
-  digitalWriteFast (oSQout,1);//temp testing OC  
+  //digitalWriteFast (oSQout,1);//temp testing OC  
 
   inputConverter = inputVOct*59000; //<-----------------------------number is MASTER TUNING also affected by ISR speed 
   //divide by 2 if you want it play 1 octave lower, 4 for 2 octaves etc.
