@@ -29,13 +29,22 @@ if (loopReset == 1)goto evilGoto;
   //comment out above line and uncomment following line for analog style non stepped tuning 
   //int tuner = inCV+(analogControls[9]>>1)+(analogControls[7]>>4);
   //_____________END TUNINGOPTIONS
-  if (loopReset == 1)goto evilGoto;
+  
+  
+  if (loopReset == 1)goto evilGoto;  
   inputScaler = float(tuner/octaveSize);  
   if (loopReset == 1)goto evilGoto;
   
-  inputVOct = powf(2.0,inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function)
+  //______________________________CONVERSION OPTIONS
+  digitalWriteFast (oSQout,0);//temp testing OC
+  //inputVOct = powf(2.0,inputScaler); //uncomment for slightly more accurate v/oct conversion (but it is slower)
+  inputVOct = fastpow2(inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function) comment out if using powf version above
+ digitalWriteFast (oSQout,1);//temp testing OC
+ //______________________________END CONVERSION OPTIONS
+ 
+ 
   //inputVOct = sq(inputScaler); 
-  
+  if (loopReset == 1)goto evilGoto;
   inputConverter = inputVOct*59000; //<-----------------------------number is MASTER TUNING also affected by ISR speed 
   //divide by 2 if you want it play 1 octave lower, 4 for 2 octaves etc.
   //you can also fine tune it to just how you like it by tweaking the number up and down.

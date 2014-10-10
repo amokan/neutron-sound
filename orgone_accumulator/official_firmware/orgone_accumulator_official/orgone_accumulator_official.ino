@@ -1,5 +1,5 @@
 //Neutron-sound.com 
-//Orgone Accumulator 1.0.6
+//Orgone Accumulator 1.1.0
 //these wavetables can be replaced with ones converted from the AKWF collection. they are at
 //https://github.com/jakplugg/neutron-sound/tree/master/orgone_accumulator/AKWF_converted
 
@@ -1286,6 +1286,12 @@ lfo;
 #define detuneHiSwitch 4
 #define tuneLockSwitch 0
 #define xModeSwitch 5
+
+#ifdef __cplusplus
+#define cast_uint32_t static_cast<uint32_t>
+#else
+#define cast_uint32_t (uint32_t)
+#endif
 
 
 #define oSQout 11 //square wave out
