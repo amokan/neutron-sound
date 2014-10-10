@@ -5,7 +5,7 @@ void FASTRUN outUpdateISR(void){
  
   
   oSQ.phase = oSQ.phase +  (uint32_t)oSQ.phase_increment; //square wave osc
-  //digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
+  digitalWriteFast (oSQout,(oSQ.phase < oSQ.PW)); //pulse out 
   
   
 

@@ -36,10 +36,10 @@ if (loopReset == 1)goto evilGoto;
   if (loopReset == 1)goto evilGoto;
   
   //______________________________CONVERSION OPTIONS
-  digitalWriteFast (oSQout,0);//temp testing OC
+  //digitalWriteFast (oSQout,0);//temp testing OC
   //inputVOct = powf(2.0,inputScaler); //uncomment for slightly more accurate v/oct conversion (but it is slower)
   inputVOct = fastpow2(inputScaler); //"real time" exponentiation of CV input! (powf is single precision float power function) comment out if using powf version above
- digitalWriteFast (oSQout,1);//temp testing OC
+ //digitalWriteFast (oSQout,1);//temp testing OC
  //______________________________END CONVERSION OPTIONS
  
  
