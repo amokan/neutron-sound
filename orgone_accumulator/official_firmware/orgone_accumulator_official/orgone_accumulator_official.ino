@@ -1,7 +1,6 @@
 //Neutron-sound.com 
 //Orgone Accumulator 1.1.1
-//these wavetables can be replaced with ones converted from the AKWF collection. they are at
-//https://github.com/jakplugg/neutron-sound/tree/master/orgone_accumulator/AKWF_converted
+//these wavetables can be replaced with ones converted from the AKWF collection. they are included in the github download.
 
 const int16_t sinTable[] = {
   0,402,804,1206,1607,2009,2410,2811,3211,3611,4011,4409,4807,5205,5601,5997,6392,
