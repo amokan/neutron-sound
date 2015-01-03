@@ -25,11 +25,11 @@ void UPDATECONTROLS_FM(){
     //detuneAmountCont = (detuneAmountContCubing*detuneAmountContCubing*detuneAmountContCubing)/1024.0;  
     
 //        Serial.print(FMIndex);
-        Serial.print("    ");
-        Serial.print(detuneAmountCont);
-        
-        Serial.print("    ");
-        Serial.println(aInModDetune);
+//        Serial.print("    ");
+//        Serial.print(detuneAmountCont);
+//        
+//        Serial.print("    ");
+//        Serial.println(aInModDetune);
 
     break;
 

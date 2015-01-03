@@ -1,5 +1,5 @@
 //Neutron-sound.com 
-//Orgone Accumulator 1.1.0
+//Orgone Accumulator 1.1.1
 //these wavetables can be replaced with ones converted from the AKWF collection. they are at
 //https://github.com/jakplugg/neutron-sound/tree/master/orgone_accumulator/AKWF_converted
 

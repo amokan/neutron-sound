@@ -21,7 +21,9 @@ void ASSIGNINCREMENTS(){
 
 
     if (FMFixedOn){
-      FMMult = (((averageratio>>1)/2.1)+1.0)*aInModRatio;  //FM+fixed mult control 
+      float avgcubing = averageratio/500.0; //change to adjust "LFO" in fm fixed
+      FMMult = ((((float)(avgcubing*avgcubing*avgcubing)))+0.001)*(aInModRatio*8);  //FM+fixed mult control 
+      //Serial.println(FMMult);
       osc_mult[0]=FMMult;
       osc_mult[1]=4;
       o2.phase_increment = inputConverter*osc_mult[1]  ;
@@ -74,7 +76,8 @@ void ASSIGNINCREMENTS(){
 
 
     if (FMFixedOn){
-      FMMult = (((averageratio>>1)/2.1)+1.0)*aInModRatio;  //FM+fixed mult control 
+      float avgcubing = averageratio/500.0; //change to adjust "LFO" in fm fixed
+      FMMult = ((((float)(avgcubing*avgcubing*avgcubing)))+0.001)*(aInModRatio*8);  //FM+fixed mult control 
       osc_mult[0]=FMMult;
       osc_mult[1]=4;
       FMX_HiOffset=mixHi*FMX_HiOffsetCont;
