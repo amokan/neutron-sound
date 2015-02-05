@@ -10,8 +10,5 @@ void UPDATE_LEDS(){
     case 3:
     analogWrite(LED_Hi,(mixHi<<2)-LED_comp);
     break;
-    //case 4:
-    //analogWrite(LED_PWM,min(8191,((oSQ.PW>>19)+LED_comp)));
-    //break;
   }
 }

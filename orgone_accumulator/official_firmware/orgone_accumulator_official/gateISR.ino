@@ -1,7 +1,7 @@
 void gateISR(){
 //  noInterrupts();
 analogWrite(aout2,4000);
-       o1.phase =        
+      o1.phase =        
       o2.phase =      
       o3.phase =     
       o4.phase =       

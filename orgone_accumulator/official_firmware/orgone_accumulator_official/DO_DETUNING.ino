@@ -7,8 +7,6 @@ void DODETUNING(){
     detuneScaler = aInModDetune * mixDetune ;
     for (int i=0; i <= 3; i++){  
       detune[i] = (uint32_t)((detuneScaler/300000.0) * primes[i]); 
-
-
     }
   }
   else{  //detune follows pitch, detune up to "hoover"

@@ -81,7 +81,7 @@ if (loopReset == 1)goto evilGoto;
   loopReset = 0;
   envVal = constrain((aInPos + mixPos),0,4095); //mix the position knob with the modulation from the CV input (fix for bipolar)
   
-   mixMid = constrain((2047-abs(envVal-2047)),0,2047);//sets the level of the midpoint wave  
+  mixMid = constrain((2047-abs(envVal-2047)),0,2047);//sets the level of the midpoint wave  
   mixHi = constrain((((envVal))-2047),0,2047);//sets the level of the high wave
   mixLo = constrain((2047-((envVal))),0,2047);//sets the level of the low wave
   
